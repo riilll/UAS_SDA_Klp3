@@ -92,6 +92,7 @@ void undoTransaksi(LinkedList *list, Stack *riwayat);
 void tampilRiwayatTransaksi(Stack *riwayat);
 double hitungTotalNilaiInventori(LinkedList *list);
 void tampilkanLaporanInventori(LinkedList *list);
+void hapusDariQueue(Queue *q,int id);
 
 int hashFunction(int id);
 void insertHash(HashTable *ht, int id, Node *barangPtr);

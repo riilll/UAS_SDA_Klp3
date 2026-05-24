@@ -27,10 +27,11 @@ void enqueueRestock(Queue *q, Barang barang) {
 void cekStokMinimum(Barang barang, Queue *q) {
 
     if(barang.stok <= barang.stokMinimum) {
-
+        hapusDariQueue(q,barang.id);
         printf("WARNING: Stok barang '%s' kritis!\n", barang.nama);
-
         enqueueRestock(q, barang);
+    }else{
+        hapusDariQueue(q,barang.id);
     }
 }
 
@@ -47,6 +48,11 @@ void tambahBarang(LinkedList *list, Queue *q, HashTable *ht) {
 
     printf("ID Barang            : ");
     scanf("%d", &baru->data.id);
+    if(cariBarangByID(ht, baru->data.id) != NULL){
+        printf("ERROR: ID sudah digunakan!\n");
+        free(baru);
+        return;
+    }
 
     printf("Nama Barang          : ");
     scanf(" %[^\n]", baru->data.nama);
@@ -223,5 +229,37 @@ void tampilQueueRestock(Queue *q) {
         printf("---------------------------\n");
 
         temp = temp->next;
+    }
+}
+
+void hapusDariQueue(Queue *q, int id){
+
+    QueueNode *temp=q->front;
+    QueueNode *prev=NULL;
+
+    while(temp!=NULL){
+
+        if(temp->data.id==id){
+
+            if(prev==NULL){
+
+                q->front=temp->next;
+
+            }else{
+
+                prev->next=temp->next;
+            }
+
+            if(temp==q->rear){
+                q->rear=prev;
+            }
+
+            free(temp);
+
+            return;
+        }
+
+        prev=temp;
+        temp=temp->next;
     }
 }
