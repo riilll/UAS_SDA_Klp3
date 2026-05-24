@@ -1,5 +1,6 @@
 #include "header.h"
 
+
 // Fungsi untuk memasukkan riwayat transaksi ke stack
 void pushStack(Stack *s, Barang data) {
     StackNode *baru = (StackNode*) malloc(sizeof(StackNode));
