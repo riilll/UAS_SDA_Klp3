@@ -87,7 +87,7 @@ void tambahBarang(LinkedList *list, Queue *q, HashTable *ht) {
 
         temp->next = baru;
     }
-
+    insertHash(ht, baru->data.id, baru);
     printf("Barang berhasil ditambahkan!\n");
 
     cekStokMinimum(baru->data, q);
