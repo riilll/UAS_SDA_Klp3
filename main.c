@@ -55,7 +55,7 @@ int main() {
                 switch(sub){
 
                     case 1:
-                        tambahBarang(&dataBarang,&antreanRestock);
+                        tambahBarang(&dataBarang,&antreanRestock, &hashBarang);
                         break;
 
                     case 2:

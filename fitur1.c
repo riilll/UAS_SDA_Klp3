@@ -34,7 +34,7 @@ void cekStokMinimum(Barang barang, Queue *q) {
     }
 }
 
-void tambahBarang(LinkedList *list, Queue *q) {
+void tambahBarang(LinkedList *list, Queue *q, HashTable *ht) {
 
     Node *baru = (Node*) malloc(sizeof(Node));
 
