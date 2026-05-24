@@ -1,44 +1,83 @@
 #include "header.h"
 
-int hashFunction(int id){
+int hashFunction(int id) {
     return id % SIZE;
 }
 
-void insertHash(Hashtable *ht, int id, Node *barangPtr){
+void insertHash(Hashtable *ht, int id, Node *barangPtr) {
+    if (ht == NULL || barangPtr == NULL) {
+        printf("Error: Hash Table atau pointer barang NULL!\n");
+        return;
+    }
+
     int index = hashFunction(id);
-
     HashNode *newNode = (HashNode*) malloc(sizeof(HashNode));
-    newNode->id = id;
-    newNode->barangPtr = barangPtr = barangPtr;
+    
+    if (newNode == NULL) {
+        printf("Error: Gagal alokasi memori untuk Hash Node!\n");
+        return;
+    }
 
-    newNode->next = ht=>table[index];
+    newNode->id = id;
+    newNode->barangPtr = barangPtr;  
+    newNode->next = ht->table[index];  
     ht->table[index] = newNode;
 }
 
-Node* cariBarangByID(Hashtable *ht, int id){
+// Pencarian by ID menggunakan Hash Table - O(1) rata-rata
+Node* cariBarangByID(Hashtable *ht, int id) {
+    if (ht == NULL) {
+        printf("Error: Hash Table NULL!\n");
+        return NULL;
+    }
+
     int index = hashFunction(id);
-    //akses ke list di indeks tersebut
     HashNode *temp = ht->table[index];
-    // 3. Telusuri chain (Linked List di dalam Hash Table)
+
+    // Telusuri chain di indeks tersebut
     while (temp != NULL) {
         if (temp->id == id) {
-            // Jika ID ketemu, kembalikan pointer ke barang di Linked List utama
-            return temp->barangPtr; 
+            return temp->barangPtr;  // Kembalikan pointer ke barang
         }
         temp = temp->next;
     }
-    return NULL; 
+    return NULL;  // Tidak ditemukan
 }
 
+// Pencarian by Nama menggunakan Linear Search - O(n)
+// Mendukung partial match (substring search)
 Node* cariBarangByNama(LinkedList *list, char *namaDicari) {
+    if (list == NULL || namaDicari == NULL) {
+        printf("Error: Linked List atau nama pencarian NULL!\n");
+        return NULL;
+    }
+
     Node *temp = list->head;
 
     while (temp != NULL) {
-        // Menggunakan strcasecmp agar pencarian tidak sensitif terhadap huruf besar/kecil
-        if (strcasecmp(temp->data.nama, namaDicari) == 0) {
+        // Menggunakan strstr untuk partial match (case-insensitive)
+        if (strcasestr(temp->data.nama, namaDicari) != NULL) {
             return temp;
         }
         temp = temp->next;
     }
-    return NULL;
+    return NULL;  // Tidak ditemukan
+}
+
+// Fungsi tambahan: tampilkan hasil pencarian
+void tampilHasilPencarian(Node *hasil) {
+    if (hasil == NULL) {
+        printf("\n Barang tidak ditemukan.\n");
+        return;
+    }
+
+    printf("\n Barang ditemukan!\n");
+    printf("ID         : %d\n", hasil->data.id);
+    printf("Nama       : %s\n", hasil->data.nama);
+    printf("Kategori   : %s\n", hasil->data.kategori);
+    printf("Stok       : %d\n", hasil->data.stok);
+    printf("Harga      : %.2f\n", hasil->data.harga);
+    printf("Stok Min   : %d\n", hasil->data.stokMinimum);
+    printf("Terjual    : %d\n", hasil->data.totalTerjual);
+    printf("----------------------\n");
 }
