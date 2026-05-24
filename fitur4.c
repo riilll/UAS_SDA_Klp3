@@ -4,7 +4,7 @@ int hashFunction(int id) {
     return id % SIZE;
 }
 
-void insertHash(Hashtable *ht, int id, Node *barangPtr) {
+void insertHash(HashTable *ht, int id, Node *barangPtr) {
     if (ht == NULL || barangPtr == NULL) {
         printf("Error: Hash Table atau pointer barang NULL!\n");
         return;
@@ -25,7 +25,7 @@ void insertHash(Hashtable *ht, int id, Node *barangPtr) {
 }
 
 // Pencarian by ID menggunakan Hash Table - O(1) rata-rata
-Node* cariBarangByID(Hashtable *ht, int id) {
+Node* cariBarangByID(HashTable *ht, int id) {
     if (ht == NULL) {
         printf("Error: Hash Table NULL!\n");
         return NULL;
@@ -46,7 +46,7 @@ Node* cariBarangByID(Hashtable *ht, int id) {
 
 // Pencarian by Nama menggunakan Linear Search - O(n)
 // Mendukung partial match (substring search)
-Node* cariBarangByNama(LinkedList *list, char *namaDicari) {
+Node* cariBarangByNama(LinkedList *list, const char *namaDicari) {
     if (list == NULL || namaDicari == NULL) {
         printf("Error: Linked List atau nama pencarian NULL!\n");
         return NULL;
@@ -56,7 +56,7 @@ Node* cariBarangByNama(LinkedList *list, char *namaDicari) {
 
     while (temp != NULL) {
         // Menggunakan strstr untuk partial match (case-insensitive)
-        if (strcasestr(temp->data.nama, namaDicari) != NULL) {
+        if (strstr(temp->data.nama, namaDicari) != NULL) {
             return temp;
         }
         temp = temp->next;
