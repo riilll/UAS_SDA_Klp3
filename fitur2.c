@@ -1,8 +1,5 @@
 #include "header.h"
 
-/* =========================
-   FUNGSI BANTUAN STACK
-========================= */
 // Fungsi untuk memasukkan riwayat transaksi ke stack
 void pushStack(Stack *s, Barang data) {
     StackNode *baru = (StackNode*) malloc(sizeof(StackNode));
@@ -31,9 +28,7 @@ int popStack(Stack *s, Barang *data) {
     return 1; // Berhasil pop
 }
 
-/* =========================
-   TRANSAKSI PENJUALAN
-========================= */
+
 void transaksiPenjualan(LinkedList *list, Stack *riwayat, Queue *q) {
     int id, qty;
     int ditemukan = 0;
@@ -91,9 +86,7 @@ void transaksiPenjualan(LinkedList *list, Stack *riwayat, Queue *q) {
     }
 }
 
-/* =========================
-   UNDO TRANSAKSI
-========================= */
+
 void undoTransaksi(LinkedList *list, Stack *riwayat) {
     Barang dataUndo;
     
@@ -133,9 +126,7 @@ void undoTransaksi(LinkedList *list, Stack *riwayat) {
     }
 }
 
-/* =========================
-   TAMPIL RIWAYAT TRANSAKSI
-========================= */
+
 void tampilRiwayatTransaksi(Stack *riwayat) {
     StackNode *temp = riwayat->top;
 
