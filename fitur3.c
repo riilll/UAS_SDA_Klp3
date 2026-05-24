@@ -1,8 +1,6 @@
 #include "header.h"
 
-/* =========================
-   SPLIT LINKED LIST
-========================= */
+// Fungsi Split List
 void splitList(Node *head, Node **front, Node **back) {
 
     Node *fast;
@@ -35,9 +33,7 @@ void splitList(Node *head, Node **front, Node **back) {
     }
 }
 
-/* =========================
-   MERGE DATA
-========================= */
+// Merge Data
 Node* merge(Node *a, Node *b) {
 
     if(a == NULL)
@@ -62,9 +58,7 @@ Node* merge(Node *a, Node *b) {
     return result;
 }
 
-/* =========================
-   MERGE SORT
-========================= */
+// Fungsi Merge Sort
 void mergeSort(Node **headRef) {
 
     Node *head = *headRef;
@@ -83,9 +77,7 @@ void mergeSort(Node **headRef) {
     *headRef = merge(a, b);
 }
 
-/* =========================
-   TAMPIL RANKING
-========================= */
+// Fungsi Menampilkan Ranking
 void tampilRanking(LinkedList *list) {
 
     Node *temp = list->head;
@@ -127,9 +119,7 @@ void tampilRanking(LinkedList *list) {
     }
 }
 
-/* =========================
-   IDENTIFIKASI PRODUK
-========================= */
+// Fungsi Mengidentifikasi Produk
 void identifikasiProduk(LinkedList *list) {
 
     Node *temp = list->head;
